@@ -1,1 +1,1 @@
-# DetectingNear-Duplicates
+# Detecting Near-Duplicates Using Graph Neural Networks
