@@ -1,0 +1,33 @@
+import tensorflow as tf
+
+
+def masked_softmax_cross_entropy(preds, labels, mask):
+    """Softmax cross-entropy loss with masking."""
+    loss = tf.nn.softmax_cross_entropy_with_logits(logits=preds, labels=labels)
+    mask = tf.cast(mask, dtype=tf.float32)
+    mask /= tf.reduce_mean(mask)
+    loss *= mask
+    return tf.reduce_mean(loss)
+
+
+def masked_accuracy(preds, labels, mask):
+    """Accuracy with masking."""
+	sess = tf.Session()
+	with sess.as_default(): 
+        print(tf.argmax(preds, 1).eval())
+    correct_prediction = tf.equal(tf.argmax(preds, 1), tf.argmax(labels, 1))
+    accuracy_all = tf.cast(correct_prediction, tf.float32)
+    mask = tf.cast(mask, dtype=tf.float32)
+    mask /= tf.reduce_mean(mask)
+    accuracy_all *= mask
+	
+	tf.Print('a')
+    return tf.reduce_mean(accuracy_all)
+	
+
+def predictions(preds):
+    """return prediction"""
+    
+    prediction = tf.argmax(preds, 1)
+   # prediction = tf.Print(prediction, [prediction])
+    return prediction
