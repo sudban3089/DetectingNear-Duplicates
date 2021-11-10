@@ -10,7 +10,7 @@ PRED_TEST_NDFI=PRED_TEST+1;
 save('PRED_test_NDFI.mat','PRED_TEST_NDFI');
 
 
-cd('S:\PGM Image Phylogeny\Codes\gcn_copy1\INPUTMATFILES_NDFI\Set1')
+cd('INPUTMATFILES_NDFI')
 load('y_test.mat');
 tmp = y_test(10501:end,:);
 
@@ -31,7 +31,7 @@ ORIGINAL_EDGES_10nodes = [[[2:10]', ones(9,1),]; 4,2;5,2;6,2;7,2; 8,3;9,3;10,3; 
 
 % PRNU Features
 
-cd('S:\PGM Image Phylogeny\Codes\HGNN-master\datasets\FaceFeats_NDFI\SetI')
+cd('Results\FaceFeats_NDFI')
 load('PRNUFeats_Resized.mat')
 testPRNU = PRNU_Features;
 rowmin = min(testPRNU,[],2);
