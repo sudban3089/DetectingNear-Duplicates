@@ -1,25 +1,13 @@
 # Detecting Near-Duplicates Using Graph Neural Networks and Sensor Pattern Noise
 
-This is a Tensorflow and MATLAB R2018a implementation of detection of near-duplicate face images using graph neural network and sensor pattern noise
+This is a Tensorflow and MATLAB R2018a implementation of detection of near-duplicate face images using graph neural network and sensor pattern noise. The implementation of the graph neural network is adopted from https://github.com/tkipf/gcn See their paper for details about graph convolutional neural network.
  
 ## Requirements
 * MATLAB R2018a (should run on higher versions also but I have not confirmed it)
-* Tensorflow 1.10.1 (should be compatible with higher versions but check for deprecations) 
+* Tensorflow >0.12 (should be compatible with higher versions but check for deprecations) 
+* Networkx
 
 ## Folder organization
-
-* `Example_TestImages` contains 3 example test images from MICHE-I dataset. Please contact the authors
-for permission if using MICHE-I images. 
-
-010\_IP5\_OU\_F\_RI\_01\_2.jpg -  Subject Id: 10 Device ID: IP5 (iPhone 5 Device 1) Acquisition settings: OU (Outdoor)
-Camera used: F (Front camera) Laterality: RI (Right eye) Session: 01 Sample number: 2
-
-066\_IP5\_IN\_F\_RI\_01\_3.jpg - Subject Id: 66 Device ID: IP5 (iPhone 5 Device 2) Acquisition settings: IN (Indoor)
-Camera used: F (Front camera) Laterality: RI (Right eye) Session: 01 Sample number: 1
-
-072\_GS4\_OU\_F\_RI\_01\_3.jpg - Subject Id: 72 Device ID: GS4 (Samsung Galaxy S4) Acquisition settings: OU (Outdoor)
-Camera used: F (Front camera) Laterality: RI (Right eye) Session: 01 Sample number: 3
-
 
 * `Filter` and `Functions` contains C++ compiled files for Sensor Pattern Noise (SPN)- PRNU computation from images
 (http://dde.binghamton.edu/download/camera_fingerprint/)
@@ -27,7 +15,7 @@ Camera used: F (Front camera) Laterality: RI (Right eye) Session: 01 Sample numb
 * `Noise Templates Enhanced`, `Noise Templates MLE` and `Noise Templates Phase` contain some of the sensor reference patterns used in this work (Rear sensors
 have larger sized reference patterns you can add them for evaluation, change the following scripts if you insert/delete reference patterns: `NCC_Computation_MLE.m`, `NCC_Computation_Enhanced.m`, `NCC_Computation_Phase.m` and `DispSensor.m`)
 
-## Run the demo
+## Steps to run the scripts
 
 Download the folder on your desktop and run the following scripts: (Please ensure you are in the correct working directory) 
 
@@ -83,22 +71,10 @@ SPN
 
 ## Notes
 
-* Examples illustrated using images located in
-Example\_TestImages folder. Please substitute with other images as
-needed
+* The scripts provided are generated using training images form the Labeled Faces in the Wild Datset http://vis-www.cs.umass.edu/lfw/ and test images from Near-Duplicate Face Images - Set I http://iprobe.cse.msu.edu/dataset_detail.php?id=1&?title=Near-Duplicate_Face_Images_(NDFI) You can use any other test set
 
-* Hyperparameter alpha tuned using validation images on MICHE-I
-dataset. Please fine tune the hyperparameter as needed
-
-* The scripts provide the computation time, the sensor classification result before
-and after sensor de-identification as evaluated using 3 algorithms -
-Phase SPN, Enhanced SPN and MLE SPN, and the images before and after
-sensor de-identification 
-
-* Periocular matching is done using
-off-the-shelf features from ResNet 101. ROC curves should be computed
-using the scores
-
+* We used Enhanced PRNU for sensor pattern nosie extraction. See the paper C. T. Li, "Source Camera Identification Using Enhanced Sensor Pattern
+Noise," IEEE T-IFS 2010
 
 ## References
 
