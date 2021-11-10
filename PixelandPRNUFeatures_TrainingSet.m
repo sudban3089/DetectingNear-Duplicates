@@ -2,20 +2,23 @@ clc
 close all
 clear
 
-cd('S:\WVU_Multimodal\CODES')
+%% This script extracts the pixel intesnity fetaures from resized images of 96x96 and the sensor pattern nosie (PRNU) features
+
+% Make sure the Functions and Filter folder is added to the working directory
 addpath('Functions/')
 addpath('Filter/')
 
 qmf = MakeONFilter('Daubechies',8);
 L = 4;
 
-%% IPT1
- 
-imageDir = 'S:\PGM Image Phylogeny\Codes\HGNN-master\datasets\WVUMultimodal_GCN\TRAININGSET\IPT1';
+%% Process LFW images to craete training set of 6 IPT configurations.
+
+ % IPT1
+ imageDir = 'TRAININGSET\IPT1';
 
 cd(imageDir)
 images = dir('*.bmp');
-cd('S:\WVU_Multimodal\CODES')
+cd('Directory where Filter\ and Functions\ are located')
 for i=1:length(images)
     i
     filename = images(i).name;
@@ -32,17 +35,17 @@ for i=1:length(images)
     FileName{i} = filename;
 end
     
-cd('S:\PGM Image Phylogeny\Codes\HGNN-master\datasets\WVUMultimodal_GCN\TRAININGSET\FeatsIPT1')
-save('PixelFeatures_IPT1_Res.mat','FileName','PixelFeatures')
-save('PRNUFeatures_IPT1_Res.mat','PRNUFeatures')
-
+cd('Results\TRAININGSET\FeatsIPT1')
+save('PixelFeatures_IPT1.mat','FileName','PixelFeatures')
+save('PRNUFeatures_IPT1.mat','PRNUFeatures')
 clear images PixelFeatures PRNUFeatures FileName
-%% IPT2
-imageDir = 'S:\PGM Image Phylogeny\Codes\HGNN-master\datasets\WVUMultimodal_GCN\TRAININGSET\IPT2';
+
+% IPT2
+imageDir = 'TRAININGSET\IPT2';
 
 cd(imageDir)
 images = dir('*.bmp');
-cd('S:\WVU_Multimodal\CODES')
+cd('Directory where Filter\ and Functions\ are located')
 for i=1:length(images)
     i
     filename = images(i).name;
@@ -59,18 +62,18 @@ for i=1:length(images)
     FileName{i} = filename;
 end
     
-cd('S:\PGM Image Phylogeny\Codes\HGNN-master\datasets\WVUMultimodal_GCN\TRAININGSET\FeatsIPT2')
-save('PixelFeatures_IPT2_Res.mat','FileName','PixelFeatures')
-save('PRNUFeatures_IPT2_Res.mat','PRNUFeatures')
-
+cd('Results\TRAININGSET\FeatsIPT2')
+save('PixelFeatures_IPT2.mat','FileName','PixelFeatures')
+save('PRNUFeatures_IPT2.mat','PRNUFeatures')
 clear images PixelFeatures PRNUFeatures FileName
-%% IPT3
+
+% IPT3
  
-imageDir = 'S:\PGM Image Phylogeny\Codes\HGNN-master\datasets\WVUMultimodal_GCN\TRAININGSET\IPT3';
+imageDir = 'TRAININGSET\IPT3';
 
 cd(imageDir)
 images = dir('*.bmp');
-cd('S:\WVU_Multimodal\CODES')
+cd('Directory where Filter\ and Functions\ are located')
 for i=1:length(images)
     i
     filename = images(i).name;
@@ -87,17 +90,17 @@ for i=1:length(images)
     FileName{i} = filename;
 end
     
-cd('S:\PGM Image Phylogeny\Codes\HGNN-master\datasets\WVUMultimodal_GCN\TRAININGSET\FeatsIPT3')
+cd('Results\TRAININGSET\FeatsIPT3')
 save('PixelFeatures_IPT3_Res.mat','FileName','PixelFeatures')
 save('PRNUFeatures_IPT3_Res.mat','PRNUFeatures')
-
 clear images PixelFeatures PRNUFeatures FileName
-%% IPT4
-imageDir = 'S:\PGM Image Phylogeny\Codes\HGNN-master\datasets\WVUMultimodal_GCN\TRAININGSET\IPT4';
+
+% IPT4
+imageDir = 'TRAININGSET\IPT4';
 
 cd(imageDir)
 images = dir('*.bmp');
-cd('S:\WVU_Multimodal\CODES')
+cd('Directory where Filter\ and Functions\ are located')
 for i=1:length(images)
     i
     filename = images(i).name;
@@ -114,18 +117,18 @@ for i=1:length(images)
     FileName{i} = filename;
 end
     
-cd('S:\PGM Image Phylogeny\Codes\HGNN-master\datasets\WVUMultimodal_GCN\TRAININGSET\FeatsIPT4')
-save('PixelFeatures_IPT4_Res.mat','FileName','PixelFeatures')
-save('PRNUFeatures_IPT4_Res.mat','PRNUFeatures')
-
+cd('Results\TRAININGSET\FeatsIPT4')
+save('PixelFeatures_IPT4.mat','FileName','PixelFeatures')
+save('PRNUFeatures_IPT4.mat','PRNUFeatures')
 clear images PixelFeatures PRNUFeatures FileName
-%% IPT5
+
+% IPT5
  
-imageDir = 'S:\PGM Image Phylogeny\Codes\HGNN-master\datasets\WVUMultimodal_GCN\TRAININGSET\IPT5';
+imageDir = 'TRAININGSET\IPT5';
 
 cd(imageDir)
 images = dir('*.bmp');
-cd('S:\WVU_Multimodal\CODES')
+cd('Directory where Filter\ and Functions\ are located')
 for i=1:length(images)
     i
     filename = images(i).name;
@@ -142,17 +145,17 @@ for i=1:length(images)
     FileName{i} = filename;
 end
     
-cd('S:\PGM Image Phylogeny\Codes\HGNN-master\datasets\WVUMultimodal_GCN\TRAININGSET\FeatsIPT5')
-save('PixelFeatures_IPT5_Res.mat','FileName','PixelFeatures')
-save('PRNUFeatures_IPT5_Res.mat','PRNUFeatures')
-
+cd('Results\TRAININGSET\FeatsIPT5')
+save('PixelFeatures_IPT5.mat','FileName','PixelFeatures')
+save('PRNUFeatures_IPT5.mat','PRNUFeatures')
 clear images PixelFeatures PRNUFeatures FileName
-%% IPT6
-imageDir = 'S:\PGM Image Phylogeny\Codes\HGNN-master\datasets\WVUMultimodal_GCN\TRAININGSET\IPT6';
+
+% IPT6
+imageDir = 'TRAININGSET\IPT6';
 
 cd(imageDir)
 images = dir('*.bmp');
-cd('S:\WVU_Multimodal\CODES')
+cd('Directory where Filter\ and Functions\ are located')
 for i=1:length(images)
     i
     filename = images(i).name;
@@ -169,8 +172,8 @@ for i=1:length(images)
     FileName{i} = filename;
 end
     
-cd('S:\PGM Image Phylogeny\Codes\HGNN-master\datasets\WVUMultimodal_GCN\TRAININGSET\FeatsIPT6')
-save('PixelFeatures_IPT6_Res.mat','FileName','PixelFeatures')
-save('PRNUFeatures_IPT6_Res.mat','PRNUFeatures')
+cd('Results\FeatsIPT6')
+save('PixelFeatures_IPT6.mat','FileName','PixelFeatures')
+save('PRNUFeatures_IPT6.mat','PRNUFeatures')
 
 clear images PixelFeatures PRNUFeatures FileName
