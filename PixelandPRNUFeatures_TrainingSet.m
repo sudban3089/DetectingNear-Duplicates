@@ -2,16 +2,14 @@ clc
 close all
 clear
 
-%% This script extracts the pixel intesnity fetaures from resized images of 96x96 and the sensor pattern nosie (PRNU) features
+%% This script first resizes the near-duplicate sets created from the LFW dataset to 96x96 and 
+%% extracts the pixel intensity features and the sensor pattern nosie (PRNU) features from them
 
-% Make sure the Functions and Filter folder is added to the working directory
+% Make sure the Functions/ and Filter/ folder is added to the working directory to ensure PRNU extraction
 addpath('Functions/')
 addpath('Filter/')
-
 qmf = MakeONFilter('Daubechies',8);
 L = 4;
-
-%% Process LFW images to craete training set of 6 IPT configurations.
 
  % IPT1
  imageDir = 'TRAININGSET\IPT1';
@@ -27,7 +25,7 @@ for i=1:length(images)
     img = img(:,:,1);
     
     PixelFeatures(i,:) = img(:);
-    Noisex_fft = PhaseNoiseExtractFromImage_SUD_Enhanced(img,qmf,2,L);
+    Noisex_fft = PhaseNoiseExtractFromImage_Enhanced(img,qmf,2,L);
     %% use this for Basic SPN, enhanced Basic SPN
     Noiseresidual_spatial = single(Noisex_fft);
     Noiseresidual_testimage = double(Noiseresidual_spatial);
@@ -54,7 +52,7 @@ for i=1:length(images)
     img = img(:,:,1);
     
     PixelFeatures(i,:) = img(:);
-    Noisex_fft = PhaseNoiseExtractFromImage_SUD_Enhanced(img,qmf,2,L);
+    Noisex_fft = PhaseNoiseExtractFromImage_Enhanced(img,qmf,2,L);
     %% use this for Basic SPN, enhanced Basic SPN
     Noiseresidual_spatial = single(Noisex_fft);
     Noiseresidual_testimage = double(Noiseresidual_spatial);
@@ -82,7 +80,7 @@ for i=1:length(images)
     img = img(:,:,1);
     
     PixelFeatures(i,:) = img(:);
-    Noisex_fft = PhaseNoiseExtractFromImage_SUD_Enhanced(img,qmf,2,L);
+    Noisex_fft = PhaseNoiseExtractFromImage_Enhanced(img,qmf,2,L);
     %% use this for Basic SPN, enhanced Basic SPN
     Noiseresidual_spatial = single(Noisex_fft);
     Noiseresidual_testimage = double(Noiseresidual_spatial);
@@ -109,7 +107,7 @@ for i=1:length(images)
     img = img(:,:,1);
     
     PixelFeatures(i,:) = img(:);
-    Noisex_fft = PhaseNoiseExtractFromImage_SUD_Enhanced(img,qmf,2,L);
+    Noisex_fft = PhaseNoiseExtractFromImage_Enhanced(img,qmf,2,L);
     %% use this for Basic SPN, enhanced Basic SPN
     Noiseresidual_spatial = single(Noisex_fft);
     Noiseresidual_testimage = double(Noiseresidual_spatial);
@@ -137,7 +135,7 @@ for i=1:length(images)
     img = img(:,:,1);
     
     PixelFeatures(i,:) = img(:);
-    Noisex_fft = PhaseNoiseExtractFromImage_SUD_Enhanced(img,qmf,2,L);
+    Noisex_fft = PhaseNoiseExtractFromImage_Enhanced(img,qmf,2,L);
     %% use this for Basic SPN, enhanced Basic SPN
     Noiseresidual_spatial = single(Noisex_fft);
     Noiseresidual_testimage = double(Noiseresidual_spatial);
@@ -164,7 +162,7 @@ for i=1:length(images)
     img = img(:,:,1);
     
     PixelFeatures(i,:) = img(:);
-    Noisex_fft = PhaseNoiseExtractFromImage_SUD_Enhanced(img,qmf,2,L);
+    Noisex_fft = PhaseNoiseExtractFromImage_Enhanced(img,qmf,2,L);
     %% use this for Basic SPN, enhanced Basic SPN
     Noiseresidual_spatial = single(Noisex_fft);
     Noiseresidual_testimage = double(Noiseresidual_spatial);
