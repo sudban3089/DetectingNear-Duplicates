@@ -1,4 +1,4 @@
-function image_noise = PhaseNoiseExtract_SUD_Enhanced(Im,qmf,sigma,L)
+function image_noise = PhaseNoiseExtract_Enhanced(Im,qmf,sigma,L)
 
 datatype = class(Im);
 switch datatype,                % convert to [0,1]
@@ -58,9 +58,9 @@ end
 wave_trans = bsxfun(@times, wave_trans, 1./sqrt(sum(wave_trans.^2, 2))); %% L2 normalization
 %%wave_trans = bsxfun(@times, wave_trans, 1./norm(wave_trans));
 [row, col]=size(wave_trans);
-alpha=6;%3.9 to 7.9 (gives positive value for alpha=3.8 but again gives -ve values for 2.8,-2.8 ...)
+alpha=6;
 
-Noise_enhanced =zeros(row,col); % added for ICB in case none of the conditions are satisfied
+Noise_enhanced =zeros(row,col); 
 
 for p=1:row
     for q=1:col
