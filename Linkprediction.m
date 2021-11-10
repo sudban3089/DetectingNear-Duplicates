@@ -3,34 +3,30 @@ close all
 clear
 
 %%
-cd('S:\PGM Image Phylogeny\Results\GCN_PREDICTIONS\GCNCHeby_3\NDFI\Set1');
-load('Predicted GCN_Chebydegree3_ITER100_IPTPRNUINIT_PIXEL_NDFI_preds_ADJNORMDIFFASYMM.mat');
-PRED_TEST = depth_labels(10501:end);
-PRED_TEST_NDFI=PRED_TEST+1;
+cd('GNNPredictions');
+load('Depthlabels.mat');
+PRED_TEST = depth_labels(10501:end); % test set satrts from 10501 onwards
+PRED_TEST_NDFI=PRED_TEST+1; % the depth labels start from '0' so we added a '1'
 save('PRED_test_NDFI.mat','PRED_TEST_NDFI');
-
 
 cd('INPUTMATFILES_NDFI')
 load('y_test.mat');
 tmp = y_test(10501:end,:);
-
 for i=1:length(tmp)
-    
     GT_TEST(i)=find(tmp(i,:)==1);
 end
-cd('S:\PGM Image Phylogeny\Results\GCN_PREDICTIONS\GCNCHeby_3\NDFI\Set1');
+cd('GNNPredictions');
 save('GT_test.mat','GT_TEST');
 
-
-%%
-cd('S:\PGM Image Phylogeny\Results\GCN_PREDICTIONS\GCNCHeby_3\NDFI\Set1');
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+cd('GNNPredictions');
 load('GT_test.mat')
-load('PRED_test_ADJNORMDIFFASYMM.mat')
+load('PRED_test_NDFI.mat')
 
-ORIGINAL_EDGES_10nodes = [[[2:10]', ones(9,1),]; 4,2;5,2;6,2;7,2; 8,3;9,3;10,3; 6,4; 7,5; 9,8;10,8];
+% Ground truth IPT configuration for NDFI
+ORIGINAL_EDGES_NDFI = [[[2:10]', ones(9,1),]; 4,2;5,2;6,2;7,2; 8,3;9,3;10,3; 6,4; 7,5; 9,8;10,8];
 
 % PRNU Features
-
 cd('Results\FaceFeats_NDFI')
 load('PRNUFeats_Resized.mat')
 testPRNU = PRNU_Features;
@@ -42,21 +38,15 @@ dist = pdist(testPRNU_norm,'seuclidean');
 correlate = squareform(dist);
 numNodes=10;
 
-for i=1%:size(testPRNU_norm,1)/numNodes
+for i=1:size(testPRNU_norm,1)/numNodes
     i
     tic
     row = numNodes*(i-1)+1;
     col = numNodes*i;
-    
     cc = correlate(row:col,row:col);
-    
-    
-    vect_old = PRED_TEST_10nodes(1,row:col);
-    
+      
+    vect_old = PRED_TEST_NDFI(1,row:col);
    
-           %  ROOTS(i).name = find(vect==1);
-            %%
-            
             multroots = find(vect_old==1);
             vect = vect_old;
             if length(multroots)>1
@@ -126,27 +116,26 @@ for i=1%:size(testPRNU_norm,1)/numNodes
     TREE_10nodes(i).name = tree;
     ROOTFROMIPT(i,:) = ROOTS_TREES(1:3);
     toc
-    if size(tree,1)>size(ORIGINAL_EDGES_10nodes,1)
-        Accuracy_10nodes(i)=sum(ismember(ORIGINAL_EDGES_10nodes,tree,'rows'))/length(ORIGINAL_EDGES_10nodes);
+    if size(tree,1)>size(ORIGINAL_EDGES_NDFI,1)
+        Accuracy_NDFI(i)=sum(ismember(ORIGINAL_EDGES_NDFI,tree,'rows'))/length(ORIGINAL_EDGES_NDFI);
     else
-        Accuracy_10nodes(i)=sum(ismember(tree,ORIGINAL_EDGES_10nodes,'rows'))/length(ORIGINAL_EDGES_10nodes);
+        Accuracy_NDFI(i)=sum(ismember(tree,ORIGINAL_EDGES_NDFI,'rows'))/length(ORIGINAL_EDGES_1NDFI);
     end
   
   clear  sortrootind unipar treeind_ACTUAL imgind rootmax parent child tree vect cc_temp_node sortval sortind pot_links REMnodes depth
       clear ROOTS_TREES NumPar cc vect vect_old vect_uni sortrootsv sortrootsi sortnodesi multroots multnodes multroots_cc mean_cc remroots correct err
                    
 end
-% disp('IPT Recon 10 nodes:')
-% mean(Accuracy_10nodes)
-% 
-% numel(find(ROOTFROMIPT(:,1)==1))/length(ROOTS)
-% ((numel(find(ROOTFROMIPT(:,1)==1)))+(numel(find(ROOTFROMIPT(:,2)==1))))/length(ROOTS)
-% ((numel(find(ROOTFROMIPT(:,1)==1)))+(numel(find(ROOTFROMIPT(:,2)==1)))+(numel(find(ROOTFROMIPT(:,3)==1))))/length(ROOTS)
-% 
-%  %numel(find(ROOTS==1))/length(ROOTS)
-% 
-% cd('S:\PGM Image Phylogeny\Results\GCN_PREDICTIONS\GCNCHeby_3\NDFI\Set1');
-% save('TREES.mat','TREE_10nodes')
-% save('ROOTSFROMIPT.mat','ROOTFROMIPT')
-% %save('ROOTS_POSTCORRECTION.mat','ROOTS')
+
+disp('IPT Recon 10 nodes:')
+mean(Accuracy_NDFI)
+ 
+numel(find(ROOTFROMIPT(:,1)==1))/length(ROOTS) % Rank 1
+((numel(find(ROOTFROMIPT(:,1)==1)))+(numel(find(ROOTFROMIPT(:,2)==1))))/length(ROOTS) % Rank 2
+((numel(find(ROOTFROMIPT(:,1)==1)))+(numel(find(ROOTFROMIPT(:,2)==1)))+(numel(find(ROOTFROMIPT(:,3)==1))))/length(ROOTS) % Rank 3
+
+cd('IPTReconstructions\NDFI');
+save('TREES.mat','TREE_10nodes')
+save('ROOTSFROMIPT.mat','ROOTFROMIPT')
+
 
