@@ -8,32 +8,32 @@ clear
 
 %% PixelFeatures  (Use pixel intensity features from LFW dataset, we used a subset of features)
                                                                    
-cd('Path to pixel intensity features of train IPT-1 set');
+cd('Results\TRAININGSET\FeatsIPT1');
 F1 = load('PixelFeatures_IPT1_Ori.mat');
 train_1 = F1.PixelFeatures(3651:4900,:);
 val_1 = F1.PixelFeatures(7451:7950,:);
 
-cd('Path to pixel intensity features of train IPT-2 set');
+cd('Results\TRAININGSET\FeatsIPT2');
 F2 = load('PixelFeatures_IPT2.mat');
 train_2 = F2.PixelFeatures(3651:4900,:);
 val_2 = F2.PixelFeatures(7451:7950,:);
 
-cd('Path to pixel intensity features of train IPT-3 set');
+cd('Results\TRAININGSET\FeatsIPT3');
 F3 = load('PixelFeatures_IPT3.mat');
 train_3 = F3.PixelFeatures(4951:6200,:);
 val_3 = F3.PixelFeatures(7981:8480,:);
 
-cd('Path to pixel intensity features of train IPT-4 set');
+cd('Results\TRAININGSET\FeatsIPT4');
 F4 = load('PixelFeatures_IPT4.mat');
 train_4 = F4.PixelFeatures(4951:6200,:);
 val_4 = F4.PixelFeatures(7981:8480,:);
 
-cd('Path to pixel intensity features of train IPT-5 set');
+cd('Results\TRAININGSET\FeatsIPT5');
 F5 = load('PixelFeatures_IPT5.mat');
 train_5 = F5.PixelFeatures(6201:7450,:);
 val_5 = F5.PixelFeatures(8486:8985,:);
 
-cd('Path to pixel intensity features of train IPT-6 set');
+cd('Results\TRAININGSET\FeatsIPT6');
 F6 = load('PixelFeatures_IPT6.mat');
 train_6 = F6.PixelFeatures(6201:7450,:);
 val_6 = F6.PixelFeatures(8486:8985,:);
