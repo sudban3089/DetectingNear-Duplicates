@@ -17,20 +17,31 @@ have larger sized reference patterns you can add them for evaluation, change the
 
 ## Steps to run the scripts
 
-Download the folder on your desktop and run the following scripts: (Please ensure you are in the correct working directory) 
+Please follow the steps to ensure you first prepare the data to be fed as inputs to the graph neural network, followed by running the node mebedding module and finally the link prediction module
 
-* For PRNU Anonymization
+* Data preprocessing and preparation
 ```bash
-Demo_Anonymization.m
+PixelandPRNUFeatures_TrainingSet.m
 ```
-* For PRNU Spoofing
 ```bash
-Demo_Spoofing.m
+PixelandPRNUFeatures_TestSetNDFI.m
 ```
-For Spoofing use the same sensor for both test
-image (**F**.jpg) and candidate image (**F**.jpg) (Front-Front spoofing,
-Rear-Rear spoofing but no cross spoofing such as Front-Rear OR
-Rear-Front).
+```bash
+GNNInputs_NDFI.m
+```
+Run the above scripts in the order mentioned to extract pixel intensity and sensor pattern noise features form the trianing set and the testing set. Then run `GNNInputs_NDFI.m` to prepare the data in the format suitable for GNN. 
+
+* For depth label prediction using GNN
+```bash
+Nodeembedding.py
+```
+Run the above script to get the depth label predictions from the graph neural network. Read the script and you can provide `gcn` and `gcn_cheby` to select between ChebNet and GCN. The order of the Chebyshev polynomials can be provded as an input argument. We have used 3rd order Chebsyhev polynomial as it is giving us the best results.   
+
+* For link prediction using sensor pattern noise
+```bash
+Linkprediction.m
+```
+Run the above script to construct the IPT using depth labels prodcued by `Nodeembedding.py` and the sensor pattern noise extarcted using `PixelandPRNUFeatures_TestSetNDFI.m`.  
 
 ## Helper functions (Read the comments included in individual helper functions for better understanding)
 
