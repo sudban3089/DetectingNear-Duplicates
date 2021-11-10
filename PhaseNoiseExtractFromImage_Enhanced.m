@@ -1,4 +1,4 @@
-function Noise = PhaseNoiseExtractFromImage_SUD_Enhanced(image,qmf,sigma,L,noZM,color)
+function Noise = PhaseNoiseExtractFromImage_Enhanced(image,qmf,sigma,L,noZM,color)
 
 if nargin<5, noZM=0;  end
  if nargin<6, color=0; end
@@ -14,7 +14,7 @@ if ischar(image), X = imread(image); else X = image; clear image, end
 
 
 if three~=3,
-    Noise = PhaseNoiseExtract_SUD_Enhanced(X,qmf,sigma,L);
+    Noise = PhaseNoiseExtract_Enhanced(X,qmf,sigma,L);
     if ~color
         Noise = rgb2gray1(Noise);
     end
