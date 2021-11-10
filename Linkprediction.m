@@ -2,7 +2,9 @@ clc
 close all
 clear
 
-%%
+%% This script perform link prediction by using pairwise analysis. Uee the depth labels produced by GNN and the PRNU features of the test set to construct the IPT.
+%% This script also evaluates the IPT reconstruction in terms of root node identification and IPT reconstruction accuracy
+
 cd('GNNPredictions');
 load('Depthlabels.mat');
 PRED_TEST = depth_labels(10501:end); % test set satrts from 10501 onwards
@@ -28,7 +30,7 @@ ORIGINAL_EDGES_NDFI = [[[2:10]', ones(9,1),]; 4,2;5,2;6,2;7,2; 8,3;9,3;10,3; 6,4
 
 % PRNU Features
 cd('Results\FaceFeats_NDFI')
-load('PRNUFeats_Resized.mat')
+load('PRNUFeatures.mat')
 testPRNU = PRNU_Features;
 rowmin = min(testPRNU,[],2);
 rowmax = max(testPRNU,[],2);
