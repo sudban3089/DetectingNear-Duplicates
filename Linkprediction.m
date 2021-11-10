@@ -5,10 +5,9 @@ clear
 %%
 cd('S:\PGM Image Phylogeny\Results\GCN_PREDICTIONS\GCNCHeby_3\NDFI\Set1');
 load('Predicted GCN_Chebydegree3_ITER100_IPTPRNUINIT_PIXEL_NDFI_preds_ADJNORMDIFFASYMM.mat');
-PRED_TEST = pred(10501:end);
-PRED_TEST_10nodes=PRED_TEST+1;
-
-save('PRED_test_ADJNORMDIFFASYMM.mat','PRED_TEST_10nodes');
+PRED_TEST = depth_labels(10501:end);
+PRED_TEST_NDFI=PRED_TEST+1;
+save('PRED_test_NDFI.mat','PRED_TEST_NDFI');
 
 
 cd('S:\PGM Image Phylogeny\Codes\gcn_copy1\INPUTMATFILES_NDFI\Set1')
