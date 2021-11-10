@@ -1,6 +1,6 @@
-# Detecting Near-Duplicates Using Graph Neural Networks and Sensor Pattern Noise
+# Image Phylogeny from Near-Duplicates Using Graph Neural Networks and Sensor Pattern Noise
 
-This is a Tensorflow and MATLAB R2018a implementation of detection of near-duplicate face images using graph neural network and sensor pattern noise. The implementation of the graph neural network is adopted from https://github.com/tkipf/gcn See their paper for details about graph convolutional neural network.
+This is a Tensorflow and MATLAB R2018a implementation of constructing image phylogeny tree from a set of near-duplicate face images using graph neural network and sensor pattern noise. The implementation of the graph neural network is adopted from https://github.com/tkipf/gcn See their paper for details about graph convolutional neural network.
 
 ## Objective
 
