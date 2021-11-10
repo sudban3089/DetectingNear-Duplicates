@@ -4,7 +4,7 @@ This is a Tensorflow and MATLAB R2018a implementation of detection of near-dupli
 
 ## Objective
 
-The objective of this work is to detect the original image from a set of near-duplicates. These near-duplicates belong to the same individual but have been digitally modified usign different image editing tools. The original image is also known as the root node. Further, we also deduce the hierarchical relationship between the near-duplicates and represent it in the form of an image phylogeny tree, also known as IPT.   
+The objective of this work is to detect the original image from a set of near-duplicates. These near-duplicates belong to the same individual but have been digitally modified usign different image editing tools. The original image is also known as the root node (shown in red bounding box in the figure below). Further, we also deduce the hierarchical relationship between the near-duplicates and represent it in the form of a driected acyclic graph, also known as an image phylogeny tree (IPT).   
 
 ![alternativetext](objective.PNG)
 
