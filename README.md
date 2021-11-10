@@ -1,4 +1,4 @@
-# Detecting Near-Duplicates Using Graph Neural Networks
+# Detecting Near-Duplicates Using Graph Neural Networks and Sensor Pattern Noise
 
 This is a Tensorflow and MATLAB R2018a implementation of detection of near-duplicate face images using graph neural network and sensor pattern noise
  
