@@ -1,7 +1,13 @@
 # Detecting Near-Duplicates Using Graph Neural Networks and Sensor Pattern Noise
 
 This is a Tensorflow and MATLAB R2018a implementation of detection of near-duplicate face images using graph neural network and sensor pattern noise. The implementation of the graph neural network is adopted from https://github.com/tkipf/gcn See their paper for details about graph convolutional neural network.
- 
+
+## Objective
+
+The objective of this work is to detect the original image from a set of near-duplicates. These near-duplicates belong to the same individual but have been digitally modified usign different image editing tools. The original image is also known as the root node. Further, we also deduce the hierarchical relationship between the near-duplicates and represent it in the form of an image phylogeny tree, also known as IPT.   
+
+![alternativetext](objective.PNG)
+
 ## Requirements
 * MATLAB R2018a (should run on higher versions also but I have not confirmed it)
 * Tensorflow >0.12 (should be compatible with higher versions but check for deprecations) 
