@@ -2,73 +2,56 @@ clc
 close all
 clear
 
-%% PixelFeatures  (3651:4851 ->train  4101:43100 ->val, 10021:7000 test )
-                                                                   %(#subjects: 5100:564 (tr)   565:573(val) 592:656(test))
-cd('S:\PGM Image Phylogeny\Codes\HGNN-master\datasets\Feats_IPT1');
+%% Process the pixel features and the sensor pattern noise feraures such that they can be fed to the GNN. 
+%% Use this script to provide flattened pixel intensity values of near-duplicate sets, adjacency graph using PRNU, labels and partitions
 
+
+%% PixelFeatures  (Use pixel intensity features from LFW dataset, we used a subset of features)
+                                                                   
+cd('Path to pixel intensity features of train IPT-1 set');
 F1 = load('PixelFeatures_IPT1_Ori.mat');
+train_1 = F1.PixelFeatures(3651:4900,:);
+val_1 = F1.PixelFeatures(7451:7950,:);
 
-train_1 = F1.PixelFeatures(3651:4900,:);%(1:225,:);
-val_1 = F1.PixelFeatures(7451:7950,:);%(226:750,:);
+cd('Path to pixel intensity features of train IPT-2 set');
+F2 = load('PixelFeatures_IPT2.mat');
+train_2 = F2.PixelFeatures(3651:4900,:);
+val_2 = F2.PixelFeatures(7451:7950,:);
 
+cd('Path to pixel intensity features of train IPT-3 set');
+F3 = load('PixelFeatures_IPT3.mat');
+train_3 = F3.PixelFeatures(4951:6200,:);
+val_3 = F3.PixelFeatures(7981:8480,:);
 
+cd('Path to pixel intensity features of train IPT-4 set');
+F4 = load('PixelFeatures_IPT4.mat');
+train_4 = F4.PixelFeatures(4951:6200,:);
+val_4 = F4.PixelFeatures(7981:8480,:);
 
-cd('S:\PGM Image Phylogeny\Codes\HGNN-master\datasets\Feats_IPT2');
+cd('Path to pixel intensity features of train IPT-5 set');
+F5 = load('PixelFeatures_IPT5.mat');
+train_5 = F5.PixelFeatures(6201:7450,:);
+val_5 = F5.PixelFeatures(8486:8985,:);
 
-F2 = load('PixelFeatures_IPT2_Ori.mat');
-
-train_2 = F2.PixelFeatures(3651:4900,:);%(1:225,:);
-val_2 = F2.PixelFeatures(7451:7950,:);%(226:750,:);
-
-
-
-cd('S:\PGM Image Phylogeny\Codes\HGNN-master\datasets\Feats_IPT3');
-
-F3 = load('PixelFeatures_IPT3_Ori.mat');
-
-train_3 = F3.PixelFeatures(4951:6200,:);%(1:225,:);
-val_3 = F3.PixelFeatures(7981:8480,:);%(226:750,:);
-
-
-
-cd('S:\PGM Image Phylogeny\Codes\HGNN-master\datasets\Feats_IPT4');
-
-F4 = load('PixelFeatures_IPT4_Ori.mat');
-
-train_4 = F4.PixelFeatures(4951:6200,:);%(1:225,:);
-val_4 = F4.PixelFeatures(7981:8480,:);%(226:750,:);
-
-
-
-cd('S:\PGM Image Phylogeny\Codes\HGNN-master\datasets\Feats_IPT5');
-
-F5 = load('PixelFeatures_IPT5_Ori.mat');
-
-train_5 = F5.PixelFeatures(6201:7450,:);%(1:225,:);
-val_5 = F5.PixelFeatures(8486:8985,:);%(226:750,:);
-
-
-
-cd('S:\PGM Image Phylogeny\Codes\HGNN-master\datasets\Feats_IPT6');
-
-F6 = load('PixelFeatures_IPT6_Ori.mat');
-
-train_6 = F6.PixelFeatures(6201:7450,:);%(1:225,:);
-val_6 = F6.PixelFeatures(8486:8985,:);%(226:750,:);
+cd('Path to pixel intensity features of train IPT-6 set');
+F6 = load('PixelFeatures_IPT6.mat');
+train_6 = F6.PixelFeatures(6201:7450,:);
+val_6 = F6.PixelFeatures(8486:8985,:);
 
 
 train=[train_1;train_2;train_3;train_4;train_5;train_6];
 val=[val_1;val_2;val_3;val_4;val_5;val_6];
 
 %% NDFI test images
-cd('S:\PGM Image Phylogeny\Codes\HGNN-master\datasets\FaceFeats_NDFI\SetI')
-F7 =  load('PixelFeatures_Resized.mat');
+
+cd('Path to pixel intensity features of NDFI test set')
+F7 =  load('PixelFeatures.mat');
 test = F7. PixelFeatures;
 
 Features_PIXEL = [train; val; test];
 Features_PIXEL= (double(Features_PIXEL));
 
-%% Adjacency (configuration)
+%% Adjacency 
 
 ADJ_1 =eye(5);
 
@@ -172,8 +155,8 @@ ADJ_VAL_ALL = blkdiag(ADJ_VA_1,ADJ_VA_2,ADJ_VA_3,ADJ_VA_4,ADJ_VA_5,ADJ_VA_6);
 
 %% TEST
 
-cd('S:\PGM Image Phylogeny\Codes\HGNN-master\datasets\FaceFeats_NDFI\SetI')
-F8 = load('PRNUFeats_Resized.mat');
+cd('Path to NDFI PRNU features')
+F8 = load('PRNUFeats.mat');
 PRNUtest_2 = F8.PRNU_Features;
 
 D_2=pdist(PRNUtest_2,'seuclidean');
@@ -248,7 +231,7 @@ IPT4_label = [1 0 0 0 0; 0 1 0 0 0; 0 1 0 0 0; 0 1 0 0 0; 0 1 0 0 0];
 IPT5_label = [1 0 0 0 0; 0 1 0 0 0; 0 1 0 0 0; 0 1 0 0 0; 0 0 1 0 0];
 IPT6_label = [1 0 0 0 0; 0 1 0 0 0; 0 0 1 0 0; 0 0 0 1 0; 0 0 0 1 0];
 
-% TR
+% TRAIN
 IPT1_ALL = repmat(IPT1_label,250,1);
 IPT2_ALL = repmat(IPT2_label,250,1);
 IPT3_ALL = repmat(IPT3_label,250,1);
@@ -274,7 +257,7 @@ IPT_label_VAL = [IPT1_ALL;IPT2_ALL;IPT3_ALL;IPT4_ALL;IPT5_ALL;IPT6_ALL];
 clear IPT1_ALL IPT2_ALL IPT3_ALL IPT4_ALL IPT5_ALL IPT6_ALL
 
 
-% TE
+% TEST
 IPT_TE2_label = [1 0 0 0 0; 0 1 0 0 0; 0 1 0 0 0; 0 0 1 0 0; 0 0 1 0 0; 0 0 0 1 0; 0 0 0 1 0; 0 0 1 0 0; 0 0 0 1 0; 0 0 0 1 0];
 IPT_label_TE = repmat(IPT_TE2_label,1229,1);
 
@@ -296,11 +279,11 @@ y_test=zeros(numImages,5);
 
 y_test(10501:end,:) = IPT_label_TE;
 
-%% SAVE
-cd('S:\PGM Image Phylogeny\Codes\gcn_copy1\INPUTMATFILES_NDFI\Set1')
+%% SAVE (save the inputs to the GNN in matfiles, Create a directory 'INPUTMATFILES_XXX' where XXX is the name of the test set)
 
+cd('INPUTMATFILES_NDFI\')
 save('adj.mat','ADJ_ALL_sp')
-save('PixelFeatures_Res.mat','Features_PIXEL')
+save('PixelFeatures.mat','Features_PIXEL')
 save('y_train.mat','y_train')
 save('y_val.mat','y_val')
 save('y_test.mat','y_test')
