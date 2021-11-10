@@ -43,7 +43,7 @@ val=[val_1;val_2;val_3;val_4;val_5;val_6];
 
 %% NDFI test images
 
-cd('Path to pixel intensity features of NDFI test set')
+cd('Results\FaceFeats_NDFI')
 F7 =  load('PixelFeatures.mat');
 test = F7. PixelFeatures;
 
@@ -138,8 +138,8 @@ ADJ_VAL_ALL = blkdiag(ADJ_VA_1,ADJ_VA_2,ADJ_VA_3,ADJ_VA_4,ADJ_VA_5,ADJ_VA_6);
 
 %% TEST
 
-cd('Path to NDFI PRNU features')
-F8 = load('PRNUFeats.mat');
+cd('Results\FaceFeats_NDFI')
+F8 = load('PRNUFeatures.mat');
 PRNUtest_2 = F8.PRNU_Features;
 
 D_2=pdist(PRNUtest_2,'seuclidean');
