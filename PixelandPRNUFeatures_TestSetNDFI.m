@@ -33,6 +33,6 @@ end
     
 cd('Results\FaceFeats_NDFI')
 save('PixelFeatures.mat','FileName','PixelFeatures')
-save('PRNUFeats.mat','PRNU_Features')
+save('PRNUFeatures.mat','PRNU_Features')
 clear images PixelFeatures FileName PRNU_Features
 
