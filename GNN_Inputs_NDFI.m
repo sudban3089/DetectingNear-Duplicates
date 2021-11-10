@@ -38,7 +38,6 @@ F6 = load('PixelFeatures_IPT6.mat');
 train_6 = F6.PixelFeatures(6201:7450,:);
 val_6 = F6.PixelFeatures(8486:8985,:);
 
-
 train=[train_1;train_2;train_3;train_4;train_5;train_6];
 val=[val_1;val_2;val_3;val_4;val_5;val_6];
 
@@ -55,49 +54,36 @@ Features_PIXEL= (double(Features_PIXEL));
 
 ADJ_1 =eye(5);
 
-
 ADJ_1(1,2)=1;
 ADJ_1(1,3)=1;
 ADJ_1(2,4)=1;
 ADJ_1(3,5)=1;
-
 ADJ_1(1,4)=1;
 ADJ_1(1,5)=1;
 
 ADJ_2 =eye(5);
 
-
-
 ADJ_2(1,2)=1;
 ADJ_2(2,3)=1;
 ADJ_2(3,4)=1;
 ADJ_2(4,5)=1;
-
 ADJ_2(1,3)=1;
 ADJ_2(1,4)=1;
 ADJ_2(1,5)=1;
-
 ADJ_2(2,4)=1;
 ADJ_2(2,5)=1;
-
 ADJ_2(3,5)=1;
 
-
 ADJ_3 =eye(5);
-
-
 
 ADJ_3(1,2)=1;
 ADJ_3(1,3)=1;
 ADJ_3(2,4)=1;
 ADJ_3(2,5)=1;
-
-
 ADJ_3(1,4)=1;
 ADJ_3(1,5)=1;
 
 ADJ_4=eye(5);
-
 
 ADJ_4(1,2)=1;
 ADJ_4(1,3)=1;
@@ -110,7 +96,6 @@ ADJ_5(1,2)=1;
 ADJ_5(1,3)=1;
 ADJ_5(1,4)=1;
 ADJ_5(2,5)=1;
-
 ADJ_5(1,5)=1;
 
 ADJ_6 = eye(5);
@@ -119,8 +104,6 @@ ADJ_6(1,2)=1;
 ADJ_6(2,3)=1;
 ADJ_6(3,4)=1;
 ADJ_6(3,5)=1;
-
-
 ADJ_6(1,3)=1;
 ADJ_6(1,4)=1;
 ADJ_6(1,5)=1;
