@@ -4,7 +4,7 @@ This is a Tensorflow and MATLAB R2018a implementation of constructing image phyl
 
 ## Objective
 
-The objective of this work is to detect the original image from a set of near-duplicates. These near-duplicates belong to the same individual but have been digitally modified usign different image editing tools. The original image is also known as the root node (shown in red bounding box in the figure below). Further, we also deduce the hierarchical relationship between the near-duplicates and represent it in the form of a driected acyclic graph, also known as an image phylogeny tree (IPT).   
+The objective of this work is to detect the original image from a set of near-duplicates. These near-duplicates belong to the same individual but have been digitally modified using different image editing tools. The original image is also known as the root node (shown in red bounding box in the figure below). Further, we also deduce the hierarchical relationship between the near-duplicates and represent it in the form of a driected acyclic graph, also known as an image phylogeny tree (IPT).   
 
 ![alternativetext](objective.PNG)
 
@@ -32,19 +32,19 @@ PixelandPRNUFeatures_TestSetNDFI.m
 ```bash
 GNN_Inputs_NDFI.m
 ```
-Run the above scripts in the order mentioned to extract pixel intensity and sensor pattern noise features form the training set and the testing set. Then run `GNNInputs_NDFI.m` to prepare the data in the format suitable for GNN. 
+Run the above scripts in the order mentioned to extract pixel intensity and sensor pattern noise features from the training set and the testing set. Then run `GNNInputs_NDFI.m` to prepare the data in the format suitable for GNN. 
 
 * For depth label prediction using GNN use
 ```bash
 Nodeembedding.py
 ```
-Run the above script to get the depth label predictions from the graph neural network. Read the script and you can provide `gcn` and `gcn_cheby` to select between ChebNet and GCN. The order of the Chebyshev polynomials can be provded as an input argument. We have used 3rd order Chebsyhev polynomial as it is giving us the best results.   
+Run the above script to get the depth label predictions from the graph neural network. Read the script and you can provide `gcn` and `gcn_cheby` to select between ChebNet and GCN. The order of the Chebyshev polynomials can be provded as an input argument. We used 3rd order Chebsyhev polynomial as it is giving us the best results.   
 
 * For link prediction using sensor pattern noise use
 ```bash
 Linkprediction.m
 ```
-Run the above script to construct the IPT using depth labels prodcued by `Nodeembedding.py` and the sensor pattern noise extarcted using `PixelandPRNUFeatures_TestSetNDFI.m`.  
+Run the above script to construct the IPT using depth labels prodcued by `Nodeembedding.py` and the sensor pattern noise extracted using `PixelandPRNUFeatures_TestSetNDFI.m`.  
 
 ## Helper functions (Read the comments included in individual helper functions for better understanding)
 
