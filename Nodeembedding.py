@@ -174,4 +174,4 @@ test_cost, test_acc, test_duration, pred_labels, prediction_scores, test_emb = e
 print("Test set results:", "cost=", "{:.5f}".format(test_cost),
       "accuracy=", "{:.5f}".format(test_acc), "time=", "{:.5f}".format(test_duration))
 
-sio.savemat('GNNPredictions/Depthlabels.mat',{'depth_labels':pred_labs})
+sio.savemat('GNNPredictions/Depthlabels.mat',{'depth_labels':pred_labels})
